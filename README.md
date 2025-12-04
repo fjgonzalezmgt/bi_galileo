@@ -43,6 +43,8 @@ bi_galileo/
 ├── db_scripts.sql            # Scripts SQL para constraints de BD
 ├── tablero_netflix.pbix      # Dashboard de Power BI
 ├── EDA Access.md             # Enlace al EDA publicado
+├── requirements.txt          # Dependencias de Python
+├── .gitignore               # Archivos a ignorar en git
 └── LICENSE.txt               # Licencia del proyecto
 ```
 
@@ -63,7 +65,12 @@ cd bi_galileo
 
 2. **Instalar dependencias de Python**
 ```bash
-pip install pandas sqlalchemy numpy ydata-profiling openpyxl psycopg2-binary
+pip install pandas>=1.5.0 sqlalchemy>=1.4.0 numpy>=1.23.0 ydata-profiling>=4.0.0 openpyxl>=3.0.0 psycopg2-binary>=2.9.0
+```
+
+O usando un archivo de requirements:
+```bash
+pip install -r requirements.txt
 ```
 
 3. **Configurar la base de datos PostgreSQL**
@@ -71,6 +78,8 @@ pip install pandas sqlalchemy numpy ydata-profiling openpyxl psycopg2-binary
    - Crear un archivo `credenciales_bd.xlsx` con las siguientes columnas:
      - tipo: user, clave, host, puerto, db_name
      - descripcion: [tus valores correspondientes]
+   
+   > ⚠️ **Nota de Seguridad**: Para entornos de producción, se recomienda usar variables de entorno o sistemas de gestión de secretos (como AWS Secrets Manager, Azure Key Vault, o HashiCorp Vault) en lugar de archivos Excel. El archivo de credenciales debe estar incluido en `.gitignore` para evitar exponer información sensible.
 
 4. **Preparar los datos**
    - Asegurarse de tener el archivo `netflix_titles.csv` en el directorio raíz
